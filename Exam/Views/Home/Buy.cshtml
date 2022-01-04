@@ -1,0 +1,22 @@
+﻿@model Exam.ViewModels.TicketModel
+
+<h1>Ви точно хочете придбати цей квиток?</h1>
+<table class ="table" >
+        <tr class="header">
+            <td><p>Номер місця</p></td>
+            <td><p>Тип місця</p></td>
+            <td><p>Ціна</p></td>
+        </tr>
+        <tr>
+            <td><p>@Model.Number</p></td>
+            @if (Model.Type)
+            {
+                <td>
+                    <p>Люкс</p></td>
+            }
+            else {<td>
+                    <p>Економ</p></td>}
+            <td><p>@Model.price</p></td>
+        </tr>
+</table>
+@Html.ActionLink("Купити", "BuyConfirmed", "Home", Model, null)

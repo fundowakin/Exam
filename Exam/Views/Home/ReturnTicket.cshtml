@@ -1,0 +1,23 @@
+﻿@model Exam.ViewModels.TicketModel
+
+<h1>Ви точно хочете повернути цей квиток?</h1>
+<table class ="table" >
+        <tr class="header">
+            <td><p>Номер місця</p></td>
+            <td><p>Тип місця</p></td>
+            <td><p>Ціна</p></td>
+        </tr>
+        <tr>
+            <td><p>@Model.Number</p></td>
+            @if (Model.Type)
+            {
+                <td>
+                    <p>Люкс</p></td>
+            }
+            else {<td>
+                    <p>Економ</p></td>}
+            <td><p>@Model.price</p></td>
+        </tr>
+</table>
+<h3>Зверніть увагу, вібудеться повернення лише 50-ти відсотків коштів від початкової вартості квитка</h3>
+@Html.ActionLink("Повернути", "ReturnComfirmed", "Home", Model, null)

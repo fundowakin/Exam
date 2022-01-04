@@ -1,0 +1,36 @@
+﻿@model Exam.ViewModels.UserTicketsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ласкаво просимо до сервісу придбання квитків @Model.Name @Model.Surname !</h1>
+    <h2 class="display-4">Ваш баланс: @Model.Balance</h2>
+</div>
+<table class ="table" >
+        <tr class="header">
+            <td><p>Номер місця</p></td>
+            <td><p>Дата відправки</p></td>
+            <td><p>Дата прибуття</p></td>
+            <td><p>Місто відправки</p></td>
+            <td><p>Місто прибуття</p></td>
+            <td></td>
+        </tr>
+        @foreach (var userTickets in Model.UserTickets)
+        {
+            <tr>
+                <td>
+                    <p>@userTickets.Place.Number</p></td>
+                <td>
+                    <p>@userTickets.Trip.DateOfDeparture</p></td>
+                <td>
+                    <p>@userTickets.Trip.DateOfArrival</p></td>
+                <td>
+                    <p>@userTickets.Trip.CityOfDeparture</p></td>
+                <td>
+                    <p>@userTickets.Trip.CityOfArrival</p></td>
+                <td>@Html.ActionLink("Повернути квиток", "ReturnTicket", "Home", new { id = userTickets.ID }, null)</td>
+            </tr>
+        }
+</table>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GetAllPlaces">Придбати новий квиток</a>

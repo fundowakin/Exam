@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Exam.Models.Place>
+@{
+    ViewData["Title"] = "Придбання квитків";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Оберіть квитки</h1>
+</div>
+<table class ="table" >
+        <tr class="header">
+            <td><p>Номер місця</p></td>
+            <td><p>Статус місця</p></td>
+            <td><p>Тип місця</p></td>
+            <td><p>    </p></td>
+        </tr>
+        @foreach (var place in Model)
+        {
+            <tr>
+                <td>
+                    <p>@place.Number</p></td>
+                <td>
+                    <p>@place.Status </p></td>
+            @if (place.Type)
+            {
+                <td>
+                    <p>Люкс</p></td>
+            }
+            else {<td>
+                    <p>Економ</p></td>}
+            <td>
+            @if (place.Status == "Доступний")
+            {
+                @Html.ActionLink("Купити квиток", "Buy", "Home", new { id = place.ID }, null)
+            }
+            else {<p>Купити не можна</p>}
+            </td>
+        </tr>
+
+        }
+</table>
